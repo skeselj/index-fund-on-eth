@@ -67,7 +67,7 @@ abstract contract IndexFund {
     mapping(uint256 => uint256) public holdings;
     // (asset_id --> price in wei).
     mapping(uint256 => uint256) public prices;
-    // (shareholder_address --> micro-shares).
+    // (shareholder_address --> micro-shares of the whole (100%)).
     mapping(address => uint256) public shareholder_to_share;
 
     // Measured in microseconds since epoch.
@@ -88,6 +88,7 @@ abstract contract IndexFund {
     mapping(uint256 => uint256) public target_holdings; 
     uint256[] public debug_ary1;
     uint256[] public debug_ary2;
+    address[] public debug_ary3;
 
 
     constructor(uint256 _min_holding_update_diff_duration) {        
@@ -259,13 +260,15 @@ abstract contract IndexFund {
     }
 
     function outputFunds(
-        address payable withdrawing_shareholder, uint256 withdrawn_share_micro_units
+        address payable withdrawing_shareholder, uint256 withdrawn_share_micro_units,
+        bool do_transfer
     ) public returns (string memory) {
         /*
         Arguments:
             share_micro_units: how much of the shareholder's share to output, in micro-units. 
                 1,000,000 units = 100% of the shareholder's share.
         */
+
 
         uint256 existing_funds_wei = getExistingFundsWei();
 
@@ -278,12 +281,14 @@ abstract contract IndexFund {
             );
         }
 
+
         uint256 withdrawing_shareholder_share = shareholder_to_share[withdrawing_shareholder];
         uint256 withdrawl_wei = (
             existing_funds_wei *
-            (1e6 * withdrawing_shareholder_share) *
-            (1e6 * withdrawn_share_micro_units)
+            withdrawing_shareholder_share / 1e6 *
+            withdrawn_share_micro_units / 1e6
         );
+
 
         // Update shareholder_to_share, and maybe shareholders.
         shareholder_to_wei[withdrawing_shareholder] -= withdrawl_wei;
@@ -300,7 +305,9 @@ abstract contract IndexFund {
         holdings[0] -= withdrawl_wei;
 
         // Complete the transfer.
-        withdrawing_shareholder.transfer(withdrawl_wei);
+        if (do_transfer) {
+            withdrawing_shareholder.transfer(withdrawl_wei);
+        }
 
         return "";
     }
@@ -330,7 +337,10 @@ abstract contract IndexFund {
 
 
     // Debugging / inspection methods.
-    function writeHoldingsDebugInfo() public {        
+    function writeHoldingsDebugInfo() public {
+        delete debug_ary1;
+        delete debug_ary2;
+
         for (uint256 asset_idx; asset_idx < asset_ids.length; asset_idx++) {
             uint256 asset_id = asset_ids[asset_idx];
             uint256 holding = holdings[asset_id];
@@ -342,6 +352,22 @@ abstract contract IndexFund {
     function getHoldingDebugInfo() public view returns (uint256[] memory, uint256[] memory) {
         return (debug_ary1, debug_ary2);
     }
+
+    function writeShareholderDebugInfo() public {
+        delete debug_ary3;
+        delete debug_ary1;
+
+        for (uint256 shareholder_idx; shareholder_idx < shareholders.length; shareholder_idx++) {
+            address shareholder = shareholders[shareholder_idx];
+            uint256 share = shareholder_to_share[shareholder];
+
+            debug_ary3.push(shareholder);
+            debug_ary1.push(share);
+        }
+    }
+    function getShareholderDebugInfo() public view returns (address[] memory, uint256[] memory) {
+        return (debug_ary3, debug_ary1);
+    }    
 }
 
 

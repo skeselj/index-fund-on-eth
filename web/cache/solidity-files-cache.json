@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/mnt/hdd1/projects/eth-hack-2022/web/contracts/IndexFund.sol": {
-      "lastModificationDate": 1667718890268,
-      "contentHash": "e2dac33d84bf940058a34d8758d0fdda",
+      "lastModificationDate": 1667724455479,
+      "contentHash": "0d9ff1e35b0fb190e3e962bfeebd2bf4",
       "sourceName": "contracts/IndexFund.sol",
       "solcConfig": {
         "version": "0.8.17",
