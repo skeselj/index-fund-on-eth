@@ -7,7 +7,7 @@
 
 ## What's the notable code?
  - [`web/contracts/IndexFund.sol`](https://github.com/skeselj/index-fund-on-eth/blob/main/web/contracts/IndexFund.sol) -- defines `IndexFund`, a core structure for implementing the index portfolio management strategy via a smart contract; and `MockIndexFund`, a child of `IndexFund` that has mocked versions of dependency methods.
- - [``web/contracts/UniswapIndexFund.sol](https://github.com/skeselj/index-fund-on-eth/blob/main/web/contracts/UniswapIndexFund.sol) -- implements the external functions that `IndexFund` needs (for quoting and execution) using Uniswap!
+ - [`web/contracts/UniswapIndexFund.sol`](https://github.com/skeselj/index-fund-on-eth/blob/main/web/contracts/UniswapIndexFund.sol) -- implements the external functions that `IndexFund` needs (for quoting and execution) using Uniswap!
  - [`web/test/testIndexFund.js`](https://github.com/skeselj/index-fund-on-eth/blob/main/web/test/testIndexFund.js) -- here you an see a user story for the `IndexFund` structure. A user story featuring two hypothetical users is executed using the mocked version.
 
 ## How do you run the notable code?
