@@ -32,6 +32,7 @@ contract UniswapIndexFund is IndexFund {
         // For now, we just need the parent class constructor.
 
         // Took the top 5 by liquidity in https://v2.info.uniswap.org/tokens (excluding stablecoins).
+        // TODO: query for this programmaticlaly.
         asset_id_to_name[0] = "WETH";
         asset_id_to_name[1] = "WISE";
         asset_id_to_name[2] = "HANU";

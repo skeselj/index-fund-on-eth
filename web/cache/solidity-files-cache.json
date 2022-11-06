@@ -220,8 +220,8 @@
       ]
     },
     "/mnt/hdd1/projects/eth-hack-2022/web/contracts/UniswapIndexFund.sol": {
-      "lastModificationDate": 1667747773971,
-      "contentHash": "b082b2741f99724257d318286a302ceb",
+      "lastModificationDate": 1667749119424,
+      "contentHash": "cc351025746a539d25c992e063cf920d",
       "sourceName": "contracts/UniswapIndexFund.sol",
       "solcConfig": {
         "version": "0.6.6",
