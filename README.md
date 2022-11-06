@@ -1,4 +1,4 @@
-# An Index Fund of crypto-assets on the Ethereum blockchain
+# An Index Fund of crypto-assets on Ethereum
 
 ## Background
  - This was a project for the [ETHGlobal SF Hackathon 2022](https://ethglobal.com/events/ethsanfrancisco2022/home).
