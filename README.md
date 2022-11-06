@@ -6,8 +6,8 @@
 
 
 ## What is non-boilerplate in this repo?
- - `web/contracts/IndexFund.sol`
- - `web/test/testIndexFund.js`
+ - `web/contracts/IndexFund.sol` -- defines `IndexFund`, a core structure for implementing the index portfolio management strategy via a smart contract; and `MockIndexFund`, a child of `IndexFund` that has mocked versions of dependency methods.
+ - `web/test/testIndexFund.js` -- here you an see a user story for the `IndexFund` structure. A mocked version is used, and a user story featuring two hypothetical users is executed.
 
 ## How do I use this repo?
 ```
