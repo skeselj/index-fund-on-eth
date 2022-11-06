@@ -1,45 +1,17 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.14;
+// pragma solidity ^0.8.14;
+pragma solidity ^0.6.6;
 
 /*
 
 Conventions throughout:
   - Times are ms since epoch, durations are ms.
-  - Prices are micro-ETH. TODO: change this to wei, which is 1e-18 ETH. And change ints to uint256.
+  - Prices are wei.
 
 TODOs:
   - Performance optimization.
   - Slippage optimization (including frontrunning).
-
-
-Code used in https://sandbox.tenderly.co/skeselj/howling-zebra to test:
-
-```
-
-// Section 1.
-const NUM_MS_IN_S = 1e6
-const NUM_MS_IN_D = NUM_MS_IN_S * 60 * 24
-
-
-// Section 2.
-const contract = $contracts["MockIndexFund"];
-
-// ethers is already injected
-const provider = new ethers.providers.JsonRpcProvider($rpcUrl);
-const factory = new ethers.ContractFactory(
-    contract.abi, contract.evm.bytecode, provider.getSigner()
-);
-
-
-// Section 3.
-// Args given to factory.deploy are passed to the constructor.
-const deployedContract = await factory.deploy(7 * NUM_MS_IN_D);
-
-let v = await deployedContract.getPrice(0);
-console.log(`v = ${v}`);
-
-```
 
 */
 
@@ -51,16 +23,6 @@ abstract contract IndexFund {
         1. Retrieving information about assets.
         2. Executing buying and selling of assets.
 
-    Example usage: 
-        fund = IndexFund(1e6 * 60 * 24);    // Initialize a fund that rebalances every day.
-        fund.inputFunds(0x37cA571343Ad20034f74464862857Fb9C1999acb, 1e18);   // Alice input 1 ETH. Alce owns 100% of the fund.
-        fund.inputFunds(0x7cA571343Ad20034f74464862857Fb9C1999acb3, 5e17);   // Bob input 0.5 ETH. Alice owns 66.67% of the fund, Bob owns 33.33%.
-        // Wait a bit...
-        fund.updateHoldings()
-        // Wait a bit...
-        fund.updateHoldings()
-        // Wait a bit...
-        fund.outputFunds(0x37cA571343Ad20034f74464862857Fb9C1999acb, 5e17);   // Alice cashes out half her initial input. His ownership is not necessarily 50% now.
     */
 
     // (asset_id --> in units of (10-18)th of a whole (1)).
@@ -91,7 +53,7 @@ abstract contract IndexFund {
     address[] public debug_ary3;
 
 
-    constructor(uint256 _min_holding_update_diff_duration) {        
+    constructor(uint256 _min_holding_update_diff_duration) public {        
         min_holding_update_diff_duration = _min_holding_update_diff_duration;
         refreshAssets();
     }
@@ -371,7 +333,7 @@ abstract contract IndexFund {
 }
 
 
-
+// TODO: move to separate file.
 contract MockIndexFund is IndexFund {
     /* A dummy implementation of the virtual methods in IndexFund, used to test/mock IndexFund.
     
@@ -384,7 +346,7 @@ contract MockIndexFund is IndexFund {
     uint256 public eth_mktcap;
     uint256 public wbtc_mktcap;
 
-    constructor(uint256 _min_holding_update_diff_duration) IndexFund(_min_holding_update_diff_duration) {        
+    constructor(uint256 _min_holding_update_diff_duration) public IndexFund(_min_holding_update_diff_duration) {        
         // For now, we just need the parent class constructor.
     }
 
@@ -431,7 +393,7 @@ contract MockIndexFund is IndexFund {
         return 0;
     }
 
-    function sellAssetQuantity(uint256 asset_id, uint256 quantity) public view virtual override returns (uint256) {
+    function sellAssetQuantity(uint256 asset_id, uint256 quantity) public virtual override returns (uint256) {
         /* Idealized version of selling some quantity of an asset.
 
         In reality, when executing on a DEX like Uniswap, there might be slippage. Further, the transaction could
@@ -442,7 +404,7 @@ contract MockIndexFund is IndexFund {
         return quantity * price;        
     }
 
-    function buyAssetQuantity(uint256 asset_id, uint256 quantity) public view virtual override returns (uint256) {
+    function buyAssetQuantity(uint256 asset_id, uint256 quantity) public virtual override returns (uint256) {
         /* Idealized version of buying some quantity of an asset.
 
         In reality, when executing on a DEX like Uniswap, there might be slippage. Further, the transaction could 
