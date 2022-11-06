@@ -92,6 +92,25 @@
       "inputs": [
         {
           "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "debug_ary3",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
           "name": "asset_id",
           "type": "uint256"
         }
@@ -165,6 +184,24 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getShareholderDebugInfo",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
         }
       ],
       "stateMutability": "view",
@@ -250,6 +287,11 @@
           "internalType": "uint256",
           "name": "withdrawn_share_micro_units",
           "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "do_transfer",
+          "type": "bool"
         }
       ],
       "name": "outputFunds",
@@ -437,6 +479,13 @@
     {
       "inputs": [],
       "name": "writeHoldingsDebugInfo",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "writeShareholderDebugInfo",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
