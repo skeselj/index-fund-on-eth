@@ -86,6 +86,9 @@ abstract contract IndexFund {
     mapping(address => uint256) public shareholder_to_wei;
     // Units of (10-18)th of a whole (1).
     mapping(uint256 => uint256) public target_holdings; 
+    uint256[] public debug_ary1;
+    uint256[] public debug_ary2;
+
 
     constructor(uint256 _min_holding_update_diff_duration) {        
         min_holding_update_diff_duration = _min_holding_update_diff_duration;
@@ -327,8 +330,20 @@ abstract contract IndexFund {
 
 
     // Debugging / inspection methods.
-    
+    function writeHoldingsDebugInfo() public {        
+        for (uint256 asset_idx; asset_idx < asset_ids.length; asset_idx++) {
+            uint256 asset_id = asset_ids[asset_idx];
+            uint256 holding = holdings[asset_id];
+
+            debug_ary1.push(asset_id);
+            debug_ary2.push(holding);
+        }
+    }
+    function getHoldingDebugInfo() public view returns (uint256[] memory, uint256[] memory) {
+        return (debug_ary1, debug_ary2);
+    }
 }
+
 
 
 contract MockIndexFund is IndexFund {
@@ -338,10 +353,10 @@ contract MockIndexFund is IndexFund {
     
     */
 
-    uint256 wbtc_price;
+    uint256 public wbtc_price;
 
-    uint256 eth_mktcap;
-    uint256 wbtc_mktcap;
+    uint256 public eth_mktcap;
+    uint256 public wbtc_mktcap;
 
     constructor(uint256 _min_holding_update_diff_duration) IndexFund(_min_holding_update_diff_duration) {        
         // For now, we just need the parent class constructor.
