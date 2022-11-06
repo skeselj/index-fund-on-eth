@@ -95,8 +95,8 @@ contract("MockIndexFund", (accounts) => {
     );
     await fund.updateHoldings();
     console.log(
-      "\n[expected] Alice has withdrawn half her holdings, so her relative share should be " + 
-      "shrink to (x/2) / (x/2 + (1-x)), where x was her old share. And, the ETH she takes out " + 
+      "\n[expected] Alice has withdrawn half her holdings, so her relative share should " + 
+      "shrink to (x/2) / (x/2 + (1-x)), \nwhere x was her old share. And, the ETH she takes out " + 
       "should be gone."
     );
 
