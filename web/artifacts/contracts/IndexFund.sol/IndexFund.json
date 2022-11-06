@@ -4,28 +4,8 @@
   "sourceName": "contracts/IndexFund.sol",
   "abi": [
     {
-      "inputs": [
-        {
-          "internalType": "uint64",
-          "name": "asset_id",
-          "type": "uint64"
-        },
-        {
-          "internalType": "uint64",
-          "name": "price",
-          "type": "uint64"
-        }
-      ],
-      "name": "addAsset",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      "stateMutability": "payable",
+      "type": "fallback"
     },
     {
       "inputs": [
@@ -38,9 +18,9 @@
       "name": "asset_ids",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -49,22 +29,22 @@
     {
       "inputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "asset_id",
-          "type": "uint64"
+          "type": "uint256"
         },
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "quantity",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "name": "buyAssetQuantity",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "nonpayable",
@@ -73,17 +53,17 @@
     {
       "inputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "asset_id",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "name": "getAssetAbsoluteWeight",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -94,28 +74,22 @@
       "name": "getAssets",
       "outputs": [
         {
-          "internalType": "uint64[]",
+          "internalType": "uint256[]",
           "name": "",
-          "type": "uint64[]"
+          "type": "uint256[]"
         }
       ],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "uint64",
-          "name": "asset_id",
-          "type": "uint64"
-        }
-      ],
-      "name": "getPrice",
+      "inputs": [],
+      "name": "getExistingFundsWei",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -124,17 +98,36 @@
     {
       "inputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
+          "name": "asset_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "name": "holdings",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -144,13 +137,13 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "shareholder",
+          "name": "depositing_shareholder",
           "type": "address"
         },
         {
-          "internalType": "uint64",
-          "name": "eth_micro_units",
-          "type": "uint64"
+          "internalType": "uint256",
+          "name": "deposited_wei",
+          "type": "uint256"
         }
       ],
       "name": "inputFunds",
@@ -169,9 +162,9 @@
       "name": "last_holding_update_time",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -182,9 +175,9 @@
       "name": "min_holding_update_diff_duration",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -193,14 +186,14 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "shareholder",
+          "internalType": "address payable",
+          "name": "withdrawing_shareholder",
           "type": "address"
         },
         {
-          "internalType": "uint64",
-          "name": "share_micro_units",
-          "type": "uint64"
+          "internalType": "uint256",
+          "name": "withdrawn_share_micro_units",
+          "type": "uint256"
         }
       ],
       "name": "outputFunds",
@@ -217,17 +210,43 @@
     {
       "inputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "name": "prices",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "refreshAssets",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "scratch_arr",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -236,22 +255,22 @@
     {
       "inputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "asset_id",
-          "type": "uint64"
+          "type": "uint256"
         },
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "quantity",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "name": "sellAssetQuantity",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint64"
+          "type": "uint256"
         }
       ],
       "stateMutability": "nonpayable",
@@ -265,12 +284,69 @@
           "type": "address"
         }
       ],
+      "name": "shareholder_to_share",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "shareholder_to_wei",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
       "name": "shareholders",
       "outputs": [
         {
-          "internalType": "uint64",
+          "internalType": "address",
           "name": "",
-          "type": "uint64"
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "target_holdings",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -288,6 +364,23 @@
       ],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "existing_funds_wei",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateShareHolderToShare",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
     }
   ],
   "bytecode": "0x",

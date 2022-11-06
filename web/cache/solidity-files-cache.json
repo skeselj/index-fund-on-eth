@@ -72,8 +72,8 @@
       ]
     },
     "/mnt/hdd1/projects/eth-hack-2022/web/contracts/IndexFund.sol": {
-      "lastModificationDate": 1667671205015,
-      "contentHash": "2a978a698327441ddcc9c4ce67e4e5dc",
+      "lastModificationDate": 1667698193655,
+      "contentHash": "9fc83d09adb9fdead6ba6cfc5c2a7ed5",
       "sourceName": "contracts/IndexFund.sol",
       "solcConfig": {
         "version": "0.8.17",
