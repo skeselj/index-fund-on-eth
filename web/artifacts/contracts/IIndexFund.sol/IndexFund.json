@@ -1,0 +1,183 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IndexFund",
+  "sourceName": "contracts/IIndexFund.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "asset_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "buyAssetQuantity",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "asset_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getAssetAbsoluteWeight",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAssets",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "asset_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "depositing_shareholder",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deposited_wei",
+          "type": "uint256"
+        }
+      ],
+      "name": "inputFunds",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "withdrawing_shareholder",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "withdrawn_share_micro_units",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "do_transfer",
+          "type": "bool"
+        }
+      ],
+      "name": "outputFunds",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "refreshAssets",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "asset_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "sellAssetQuantity",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "updateHoldings",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
