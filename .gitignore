@@ -1,3 +1,6 @@
 web/node_modules/
 web/cache
 web/truffle-config.js
+.env
+.env.*
+!.env.example

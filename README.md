@@ -17,3 +17,8 @@ npm install
 cd test
 npx hardhat test
 ```
+ 
+## Mainnet fork configuration
+Set the `ALCHEMY_RPC_URL` environment variable to your private Ethereum RPC
+endpoint before running tests that need a mainnet fork. Forking is disabled
+when this variable is unset. Never commit the URL or its API key.

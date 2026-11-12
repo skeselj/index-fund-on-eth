@@ -16,8 +16,8 @@ module.exports = {
   networks: {
     hardhat: {
       forking: {
-        enabled: true,
-        url: "https://eth-mainnet.alchemyapi.io/v2/REDACTED_REVOKED_KEY",
+        enabled: Boolean(process.env.ALCHEMY_RPC_URL),
+        url: process.env.ALCHEMY_RPC_URL || "",
       }
     }
   }
